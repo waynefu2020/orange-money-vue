@@ -9,13 +9,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Prop} from 'vue-property-decorator';
 
-@Component({
-  props: {
-    propsMessage: String
-  }
-})
+@Component
 export default class Types extends Vue {
   type = '-';
 
