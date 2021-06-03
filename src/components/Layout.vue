@@ -1,8 +1,7 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
+  <div class="nav-wrapper" :class="classPrefix && `${classPrefix}-wrapper` ">
+    <div class="content" :class="classPrefix && `${classPrefix}-content` ">
       <slot/>
-<!--slot可以渲染从外面传进来的内容-->
     </div>
     <Nav/>
   </div>
@@ -10,6 +9,7 @@
 
 <script lang="ts">
 export default {
+  props:['classPrefix'],
   name: "Layout"
 }
 </script>
