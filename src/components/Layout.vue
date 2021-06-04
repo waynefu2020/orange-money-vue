@@ -24,5 +24,6 @@ export default {
 .content {
   overflow: auto;
   flex-grow: 1;
+  background: #f4f4f4;
 }
 </style>
