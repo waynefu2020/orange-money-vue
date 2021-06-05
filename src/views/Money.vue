@@ -1,5 +1,6 @@
 <template>
   <Layout class-prefix="layout">
+    {{record}}
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
     <Types :value.sync="record.type"/>
     <div class="formItem">
@@ -66,6 +67,6 @@ export default class Money extends Vue {
   flex-direction: column-reverse;
 }
 .formItem{
-  padding: 12px 0;
+  padding: 10px 0;
 }
 </style>
