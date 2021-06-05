@@ -21,9 +21,9 @@ const tagListModel: TagListModel = {
     save() {
         localStorage.setItem('recordList', JSON.stringify(this.data));
     },
-    create(name: string) {
+    create(name) {
         const names = this.data.map(item=>item.name);
-        if(this.data.indexOf(names)>=0){return 'duplicated';}
+        if(names.indexOf(name)>=0){return 'duplicated';}
         this.data.push({id:name, name:name});
         this.save();
         return 'success';
