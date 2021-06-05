@@ -19,12 +19,14 @@ const tagListModel: TagListModel = {
         return this.data;
     },
     save() {
-        localStorage.setItem('recordList', JSON.stringify(this.data));
+        window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
     },
     create(name) {
-        const names = this.data.map(item=>item.name);
-        if(names.indexOf(name)>=0){return 'duplicated';}
-        this.data.push({id:name, name:name});
+        const names = this.data.map(item => item.name);
+        if (names.indexOf(name) >= 0) {
+            return 'duplicated';
+        }
+        this.data.push({id: name, name: name});
         this.save();
         return 'success';
     }
