@@ -22,63 +22,77 @@ import {Component} from 'vue-property-decorator';
 import tagListModel from '@/models/tagListModel';
 import FormItem from '@/components/FormItem.vue';
 import Button from '@/components/Button.vue';
+
 @Component({
   components: {Button, FormItem}
 })
 export default class EditLabel extends Vue {
-  tag?: {id:string, name: string} = undefined;
+  tag?: { id: string, name: string } = undefined;
 
   created() {
     const id = this.$route.params.id;
     const tags = tagListModel.data;
     const tag = tags.filter(t => t.id === id)[0];
-    if(tag){
-      this.tag = tag
+    if (tag) {
+      this.tag = tag;
     } else {
-      this.$router.replace('/404')
+      this.$router.replace('/404');
     }
   }
-  update(name: string){
-    if(this.tag){
-      tagListModel.update(this.tag.id, name)
+
+  update(name: string) {
+    if (this.tag) {
+      tagListModel.update(this.tag.id, name);
     }
   }
-  remove(){
-    if(this.tag){
-      tagListModel.remove(this.tag.id)
+
+  remove() {
+    if (this.tag) {
+      if (tagListModel.remove(this.tag.id)) {
+        this.$router.back();
+      } else {
+        window.alert('删除失败');
+      }
     }
   }
-  goBack(){
-    this.$router.back()
+
+  goBack() {
+    this.$router.back();
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .navBar{
-    font-size: 16px;
-    padding: 12px 16px;
-    background: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    > .title{}
-    > .leftIcon{
-      width: 20px;
-      height: 20px;
-    }
-    > .rightIcon{
-      width: 20px;
-      height: 20px;
-    }
+.navBar {
+  font-size: 16px;
+  padding: 12px 16px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > .title {
   }
-  .form-wrapper{
-    margin-top: 8px;
-    background: white;
+
+  > .leftIcon {
+    width: 20px;
+    height: 20px;
   }
-  .button-wrapper{
-    text-align: center;
-    padding: 16px;
-    margin-top: 44-16px;
+
+  > .rightIcon {
+    width: 20px;
+    height: 20px;
   }
+}
+
+.form-wrapper {
+  margin-top: 8px;
+  background: white;
+}
+
+.button-wrapper {
+  text-align: center;
+  padding: 16px;
+  margin-top: 44-16px;
+}
 </style>
