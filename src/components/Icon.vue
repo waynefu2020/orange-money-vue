@@ -3,7 +3,6 @@
     <use :xlink:href="'#' + name"/>
   </svg>
 </template>
-
 <script lang="ts">
 
 // eslint-disable-next-line no-undef
