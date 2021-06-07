@@ -19,7 +19,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import tagListModel from '@/models/tagListModel';
 import FormItem from '@/components/FormItem.vue';
 import Button from '@/components/Button.vue';
 
@@ -27,39 +26,35 @@ import Button from '@/components/Button.vue';
   components: {Button, FormItem}
 })
 export default class EditLabel extends Vue {
-  tag?: { id: string, name: string } = undefined;
+  get tag() {
+    return this.$store.state.currentTag;
+  }
 
   created() {
     const id = this.$route.params.id;
-    const tags = tagListModel.data;
-    const tag = tags.filter(t => t.id === id)[0];
-    if (tag) {
-      this.tag = tag;
-    } else {
+    this.$store.commit('fetchTags')
+    this.$store.commit('setCurrentTag', id);
+    if (!this.tag) {
       this.$router.replace('/404');
     }
   }
 
   update(name: string) {
     if (this.tag) {
-      tagListModel.update(this.tag.id, name);
+      this.$store.commit('updateTag', {id: this.tag.id, name});
     }
   }
 
   remove() {
     if (this.tag) {
-      if (tagListModel.remove(this.tag.id)) {
-        this.$router.back();
-      } else {
-        window.alert('删除失败');
-      }
+      this.$store.commit('removeTag', this.tag.id);
     }
   }
-
-  goBack() {
-    this.$router.back();
+  goBack(){
+    this.$router.back()
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
