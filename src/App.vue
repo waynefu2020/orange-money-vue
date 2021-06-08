@@ -15,4 +15,8 @@
     color: #333;
     font-size: 16px;
   }
+  #app{
+    max-width: 375px;
+    margin: 0 auto;
+  }
 </style>

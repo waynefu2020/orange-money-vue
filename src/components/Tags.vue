@@ -7,7 +7,11 @@
       <li v-for="tag in tagList" :key="tag.id"
           @click="toggle(tag)"
           :class="{selected: selectedTags.indexOf(tag)>=0}"
-      >{{ tag.name }}
+      >
+        <div class="iconWrapper">
+          <Icon name="food" class="icon"/>
+        </div>
+        <span class="name">{{ tag.name }}</span>
       </li>
     </ul>
 
@@ -17,7 +21,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
+import {Component} from 'vue-property-decorator';
 import {mixins} from 'vue-class-component';
 import {TagHelper} from '@/mixins/TagHelper';
 
@@ -66,16 +70,31 @@ export default class Tags extends mixins(TagHelper) {
 
     > li {
       background: #d9d9d9;
-      $h: 24px;
+      $h: 40px;
       height: $h;
       border-radius: 12px;
-      padding: 0 16px;
-      margin-right: 12px;
+      padding: 6px 12px;
+      margin-right: 14px;
       margin-top: 4px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      > .iconWrapper{
+        > .icon{
+          width: 30px;
+          height: 30px;
+        }
+      }
+      > .name{
+        font-size: 14px;
+        padding: 6px 0;
+        background: transparent;
+        color: #707070;
+      }
 
       &.selected {
-        background: #fa8c16;
-        color: white;
+        background: #ffd591;
       }
     }
   }

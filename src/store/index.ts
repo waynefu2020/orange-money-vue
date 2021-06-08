@@ -19,13 +19,13 @@ const store = new Vuex.Store({
         },
         fetchRecords(state) {
             state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
-            if(!state.tagList || state.tagList.length===0){
-                store.commit('createTag','衣服')
-                store.commit('createTag','食物')
-                store.commit('createTag','住宿')
+            if (!state.tagList || state.tagList.length === 0) {
+                store.commit('createTag', '衣服');
+                store.commit('createTag', '食物');
+                store.commit('createTag', '住宿');
             }
         },
-        createRecord(state, record:RecordItem) {
+        createRecord(state, record: RecordItem) {
             const record2: RecordItem = clone(record);
             record2.createAt = new Date().toISOString();
             state.recordList.push(record2);
