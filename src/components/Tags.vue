@@ -24,9 +24,12 @@ import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import {mixins} from 'vue-class-component';
 import {TagHelper} from '@/mixins/TagHelper';
+import {defaultExpenseTags, defaultIncomeTags} from '@/constants/defaultTags';
 
 @Component
 export default class Tags extends mixins(TagHelper) {
+  defaultExpenseTags = defaultExpenseTags;
+  defaultIncomeTags = defaultIncomeTags;
   selectedTags: string[] = [];
   get tagList(){
     return this.$store.state.tagList;
