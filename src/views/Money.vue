@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import NumberPad from '@/components/NumberPad.vue';
-import Types from '@/components/Types.vue';
 import FormItem from '@/components/FormItem.vue';
 import Tags from '@/components/Tags.vue';
 import Vue from 'vue';
@@ -32,7 +31,7 @@ type RecordItem = {
 }
 
 @Component({
-  components: {Tabs, NumberPad, Types, FormItem, Tags},
+  components: {Tabs, NumberPad, FormItem, Tags},
 })
 export default class Money extends Vue {
   get recordList() {
